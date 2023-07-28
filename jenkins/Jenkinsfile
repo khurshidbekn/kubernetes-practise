@@ -1,0 +1,20 @@
+pipeline {
+       agent any
+       stages {
+           stage('startup') {
+               steps {
+                   sh '''
+                   echo "Started Jenkins pipeline"
+                   '''
+               }
+           }
+           stage('Ansible-playbook') {
+               steps {
+                   sh '''
+                   ansible-playbook playbook.yaml
+                   '''
+               }
+           }
+       }
+   }
+

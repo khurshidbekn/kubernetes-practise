@@ -1,0 +1,15 @@
+- hosts: team-1-worker
+
+- name: Copy local file to remote server
+       copy:
+         src: /c/Users/user/k8s/compose.yaml
+         dest: /home/compose.yaml
+- name: Docker swarm init
+   community.docker.docker_swarm:
+     state: present
+- name: Create docker swarm
+       docker_stack:
+         state: present
+         name: jenkins
+         compose: 
+           - /home/compose.yaml
